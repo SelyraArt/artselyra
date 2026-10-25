@@ -137,3 +137,87 @@
     min-height: 260px;
   }
 }
+
+
+/* SELYRA — CABECERA EDITORIAL Y PORTADA PREPARADA PARA VÍDEO */
+.announcement{display:none!important}
+.site-header{
+  height:auto;
+  min-height:0;
+  padding:24px 6.2% 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:18px;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.site-header .wordmark{font-size:clamp(38px,4vw,52px);line-height:1.05;letter-spacing:-.065em}
+.site-header .wordmark span{font-size:9px}
+.site-header .menu-toggle{display:none}
+.site-header .nav{display:flex;align-items:center;justify-content:center;gap:clamp(20px,3.2vw,44px);font-size:10px}
+.site-header .nav-contact{padding:9px 13px}
+.hero-video{
+  display:block;
+  min-height:0;
+  padding:0;
+  background:var(--paper);
+  color:var(--ink);
+  overflow:hidden;
+}
+.hero-video-placeholder{
+  width:100%;
+  min-height:clamp(360px,56vw,650px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  padding:48px 24px;
+  text-align:center;
+  background:linear-gradient(135deg,#eae5dc 0%,#f0ede6 50%,#ded4c7 100%);
+  color:var(--ink);
+}
+.video-placeholder-mark{
+  width:64px;height:64px;
+  display:grid;place-items:center;
+  border:1px solid rgba(36,34,31,.35);
+  border-radius:50%;
+  font-family:"Playfair Display",serif;
+  font-size:35px;
+  font-style:italic;
+}
+.hero-video-placeholder p{margin:10px 0 0;font-size:9px;letter-spacing:.22em;font-weight:600}
+.hero-video-placeholder span{font-size:12px;color:var(--muted)}
+.hero-video-caption{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:44px 7% 56px;
+}
+.hero-video-caption .eyebrow{color:var(--muted);justify-content:center}
+.hero-video-caption h1{max-width:850px;font-size:clamp(44px,6.5vw,82px);line-height:1.04;margin:18px 0}
+.hero-video-caption h1 em{color:var(--rust)}
+.hero-video-caption .hero-text{max-width:550px;color:var(--muted);margin:0 auto 24px;line-height:1.8}
+.hero-video-caption .button-dark{background:var(--ink);color:var(--paper)}
+#obras{scroll-margin-top:20px}
+#universo{scroll-margin-top:20px}
+@media(max-width:800px){
+  .site-header{padding:20px 6% 16px;gap:14px}
+  .site-header .wordmark{font-size:42px}
+  .site-header .menu-toggle{display:none}
+  .site-header .nav{display:flex;position:static;left:auto;right:auto;top:auto;background:transparent;padding:0;border:0;flex-direction:row;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:10px}
+  .site-header .nav-contact{padding:7px 9px}
+  .hero-video-placeholder{min-height:420px}
+  .hero-video-caption{padding:38px 7% 48px}
+}
+@media(max-width:480px){
+  .site-header{padding:18px 4% 14px;gap:13px}
+  .site-header .wordmark{font-size:39px}
+  .site-header .nav{gap:10px 15px;font-size:9px}
+  .site-header .nav-contact{padding:6px 8px}
+  .hero-video-placeholder{min-height:360px}
+  .hero-video-placeholder span{max-width:240px;line-height:1.7}
+  .hero-video-caption h1{font-size:46px}
+}
