@@ -16,16 +16,70 @@ if (toggle && nav) {
 document.getElementById('year').textContent = new Date().getFullYear();
 
 
-// Guardar las preferencias elegidas para conservarlas al volver a la web.
+// Guardar las preferencias elegidas y mostrar las banderas de forma consistente en todos los navegadores.
 const languageSelect = document.getElementById('language-select');
 const currencySelect = document.getElementById('currency-select');
+const languagePickerButton = document.getElementById('language-picker-button');
+const languagePickerMenu = document.getElementById('language-picker-menu');
+const languageCurrentFlag = document.getElementById('language-current-flag');
+const languageCurrentName = document.getElementById('language-current-name');
+const languageDetails = {
+  es: { flag: '🇪🇸', name: 'Español' },
+  en: { flag: '🇬🇧', name: 'English' },
+  fr: { flag: '🇫🇷', name: 'Français' },
+  de: { flag: '🇩🇪', name: 'Deutsch' },
+  it: { flag: '🇮🇹', name: 'Italiano' },
+  pt: { flag: '🇵🇹', name: 'Português' },
+  nl: { flag: '🇳🇱', name: 'Nederlands' },
+  sv: { flag: '🇸🇪', name: 'Svenska' },
+  da: { flag: '🇩🇰', name: 'Dansk' },
+  no: { flag: '🇳🇴', name: 'Norsk' },
+  ja: { flag: '🇯🇵', name: '日本語' },
+  zh: { flag: '🇨🇳', name: '中文' }
+};
+function updateLanguagePicker() {
+  if (!languageSelect) return;
+  const language = languageDetails[languageSelect.value] || languageDetails.es;
+  if (languageCurrentFlag) languageCurrentFlag.textContent = language.flag;
+  if (languageCurrentName) languageCurrentName.textContent = language.name;
+  if (languagePickerMenu) {
+    languagePickerMenu.querySelectorAll('[data-language]').forEach(option => {
+      option.setAttribute('aria-selected', String(option.dataset.language === languageSelect.value));
+    });
+  }
+}
 if (languageSelect) {
   const savedLanguage = localStorage.getItem('selyra-language');
   if (savedLanguage && [...languageSelect.options].some(option => option.value === savedLanguage)) {
     languageSelect.value = savedLanguage;
   }
+  updateLanguagePicker();
   languageSelect.addEventListener('change', () => {
     localStorage.setItem('selyra-language', languageSelect.value);
+    updateLanguagePicker();
+  });
+}
+if (languagePickerButton && languagePickerMenu) {
+  languagePickerButton.addEventListener('click', () => {
+    const isOpen = languagePickerButton.getAttribute('aria-expanded') === 'true';
+    languagePickerButton.setAttribute('aria-expanded', String(!isOpen));
+    languagePickerMenu.hidden = isOpen;
+  });
+  languagePickerMenu.querySelectorAll('[data-language]').forEach(option => {
+    option.addEventListener('click', () => {
+      if (languageSelect) {
+        languageSelect.value = option.dataset.language;
+        languageSelect.dispatchEvent(new Event('change'));
+      }
+      languagePickerMenu.hidden = true;
+      languagePickerButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.language-picker')) {
+      languagePickerMenu.hidden = true;
+      languagePickerButton.setAttribute('aria-expanded', 'false');
+    }
   });
 }
 if (currencySelect) {
