@@ -292,3 +292,46 @@ body,.site-header,.intro,.process,.prints{background:#fafaf8}
   .site-header .nav{gap:10px 17px}
   .hero-video-placeholder{width:92%;aspect-ratio:4/3;min-height:0;padding:24px 14px}
 }
+
+
+/* Preferencias de idioma y moneda en la esquina superior derecha */
+.site-header{position:relative;padding-top:62px}
+.store-preferences{
+  position:absolute;
+  top:15px;
+  right:6.2%;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  z-index:5;
+}
+.preference-control{display:flex;align-items:center;gap:5px;color:#555550}
+.preference-icon{font-size:15px;line-height:1}
+.preference-control select{
+  appearance:none;
+  -webkit-appearance:none;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#333;
+  font:500 10px "DM Sans",sans-serif;
+  letter-spacing:.04em;
+  padding:5px 15px 5px 2px;
+  cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,#555 50%),linear-gradient(135deg,#555 50%,transparent 50%);
+  background-position:calc(100% - 5px) 9px,calc(100% - 1px) 9px;
+  background-size:4px 4px,4px 4px;
+  background-repeat:no-repeat;
+  max-width:110px;
+}
+.preference-control select:focus-visible{outline:1px solid #777;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:800px){
+  .site-header{padding-top:58px}
+  .store-preferences{top:12px;right:6%}
+}
+@media(max-width:480px){
+  .site-header{padding-top:56px}
+  .store-preferences{top:9px;right:4%;gap:10px}
+  .preference-control select{font-size:9px;max-width:90px}
+}
