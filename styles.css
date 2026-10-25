@@ -371,3 +371,18 @@ body,.site-header,.intro,.process,.prints{background:#fafaf8}
   .language-picker-button{font-size:9px;gap:4px}
   .language-flag,.language-picker-menu button span{font-size:15px}
 }
+
+
+/* Ajuste de escala para títulos de las secciones de obras */
+.works-heading h2,
+.prints-heading h2{
+  font-size:clamp(30px,3.2vw,42px);
+  line-height:1.08;
+  letter-spacing:-.025em;
+  font-weight:500;
+}
+.prints-heading{margin-top:0;margin-bottom:34px}
+@media(max-width:480px){
+  .works-heading h2,
+  .prints-heading h2{font-size:30px}
+}
