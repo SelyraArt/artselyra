@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAFAF8">
+  <meta name="description" content="Contacta con Selyra para consultas sobre obras originales, prints, colaboraciones y encargos.">
+  <title>Contacto — Selyra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261025-7">
+</head>
+<body class="contact-page">
+  <header class="site-header contact-page-header">
+    <a class="wordmark" href="index.html" aria-label="Selyra, inicio">Selyra</a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html#obras">Originales</a>
+      <a href="index.html#prints">Prints</a>
+      <a href="index.html#universo">Sobre mí</a>
+      <a class="nav-contact" href="contacto.html" aria-current="page">Contactar</a>
+    </nav>
+  </header>
+
+  <main class="contact-page-main">
+    <a class="contact-back-link" href="index.html">← Volver a Selyra</a>
+    <div class="contact-page-heading">
+      <p class="section-kicker">CONTACTO</p>
+      <h1>Hablemos de <em>arte.</em></h1>
+      <p>Si tienes alguna pregunta sobre una obra, quieres hacer un encargo o proponer una colaboración, estaré encantada de leerte.</p>
+    </div>
+
+    <form class="contact-form" id="contact-form">
+      <label for="contact-name">Nombre</label>
+      <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required>
+
+      <label for="contact-email">Correo electrónico</label>
+      <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required>
+
+      <label for="contact-subject">Motivo de tu mensaje</label>
+      <select id="contact-subject" name="subject" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option>Consulta sobre una obra</option>
+        <option>Encargo personalizado</option>
+        <option>Prints y reproducciones</option>
+        <option>Colaboración</option>
+        <option>Otro</option>
+      </select>
+
+      <label for="contact-message">Mensaje</label>
+      <textarea id="contact-message" name="message" rows="6" placeholder="Cuéntame un poco más..." required></textarea>
+
+      <button class="contact-submit" type="submit">Preparar mensaje <span aria-hidden="true">↗</span></button>
+      <p class="contact-form-note">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para contact@artselyra.com. No se envía ni se almacena nada en esta página.</p>
+    </form>
+
+    <p class="contact-direct-email">¿Prefieres escribir directamente? <a href="mailto:contact@artselyra.com">contact@artselyra.com</a></p>
+  </main>
+
+  <footer class="social-footer" aria-label="Redes sociales de Selyra">
+    <span class="social-icon" aria-label="Instagram — enlace pendiente" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.8" r="1.1" fill="currentColor"/></svg>
+    </span>
+    <span class="social-icon" aria-label="TikTok — enlace pendiente" title="TikTok">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.1a4.2 4.2 0 1 1-3.5-4.14V13a1.8 1.8 0 1 0 1.1 1.66V3h2.4c.35 2.2 1.65 3.7 4 4.1v2.5A8.1 8.1 0 0 1 14 7.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </footer>
+  <script src="script.js?v=20261025-6"></script>
+</body>
+</html>
