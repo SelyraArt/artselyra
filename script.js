@@ -13,7 +13,8 @@ if (toggle && nav) {
     toggle.textContent = '☰';
   }));
 }
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearElement = document.getElementById('year');
+if (yearElement) yearElement.textContent = new Date().getFullYear();
 
 
 // Guardar las preferencias elegidas y mostrar las banderas de forma consistente en todos los navegadores.
@@ -89,5 +90,22 @@ if (currencySelect) {
   }
   currencySelect.addEventListener('change', () => {
     localStorage.setItem('selyra-currency', currencySelect.value);
+  });
+}
+
+
+// Formulario de contacto: prepara un correo en la aplicación de correo de la persona.
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const subject = String(formData.get('subject') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+    const mailSubject = subject ? `Selyra — ${subject}` : 'Mensaje desde la web de Selyra';
+    const mailBody = `Nombre: ${name}\nCorreo: ${email}\nMotivo: ${subject}\n\nMensaje:\n${message}`;
+    window.location.href = `mailto:contact@artselyra.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
   });
 }
