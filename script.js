@@ -109,3 +109,128 @@ if (contactForm) {
     window.location.href = `mailto:contact@artselyra.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
   });
 }
+
+
+// Cabecera inteligente: se oculta al bajar y vuelve al subir.
+const siteHeader = document.querySelector('.site-header');
+let lastScrollY = window.scrollY;
+let scrollTicking = false;
+if (siteHeader) {
+  window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+      const currentY = window.scrollY;
+      const cartIsOpen = document.body.classList.contains('cart-open');
+      if (currentY < 70 || currentY < lastScrollY || cartIsOpen) {
+        siteHeader.classList.remove('header-hidden');
+        siteHeader.classList.add('header-visible');
+      } else if (currentY > lastScrollY + 5) {
+        siteHeader.classList.add('header-hidden');
+        siteHeader.classList.remove('header-visible');
+      }
+      lastScrollY = currentY;
+      scrollTicking = false;
+    });
+  }, { passive: true });
+}
+
+// Carrito de selección local. Los artículos se conservan en este navegador.
+const cartOpenButton = document.getElementById('cart-open');
+const cartCloseButton = document.getElementById('cart-close');
+const cartPanel = document.getElementById('cart-panel');
+const cartBackdrop = document.getElementById('cart-backdrop');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartCount = document.getElementById('cart-count');
+const cartHeadingCount = document.getElementById('cart-heading-count');
+const cartTotal = document.getElementById('cart-total');
+const cartCheckout = document.getElementById('cart-checkout');
+const cartClear = document.getElementById('cart-clear');
+let selyraCart = [];
+try {
+  const storedCart = JSON.parse(localStorage.getItem('selyra-cart') || '[]');
+  if (Array.isArray(storedCart)) selyraCart = storedCart.filter(item => item && item.id && item.name);
+} catch (error) {
+  selyraCart = [];
+}
+function saveSelyraCart() {
+  try { localStorage.setItem('selyra-cart', JSON.stringify(selyraCart)); } catch (error) {}
+}
+function renderSelyraCart() {
+  const count = selyraCart.length;
+  if (cartCount) cartCount.textContent = String(count);
+  if (cartHeadingCount) cartHeadingCount.textContent = '(' + count + ')';
+  if (cartTotal) cartTotal.textContent = count ? 'Precio por confirmar' : 'Se confirmará el precio';
+  if (cartItemsContainer) {
+    if (!count) {
+      cartItemsContainer.innerHTML = '<p class="cart-empty">Tu carrito está vacío.</p>';
+    } else {
+      cartItemsContainer.innerHTML = selyraCart.map(item =>
+        '<div class="cart-item"><div><p class="cart-item-name"></p><p class="cart-item-detail">Precio por confirmar</p></div><button type="button" class="cart-item-remove" data-remove-id="' + encodeURIComponent(item.id) + '">Quitar</button></div>'
+      ).join('');
+      cartItemsContainer.querySelectorAll('.cart-item').forEach((row, index) => {
+        const name = row.querySelector('.cart-item-name');
+        if (name) name.textContent = selyraCart[index].name;
+      });
+    }
+  }
+  if (cartCheckout) cartCheckout.disabled = count === 0;
+}
+function openSelyraCart() {
+  if (!cartPanel || !cartBackdrop) return;
+  cartPanel.hidden = false;
+  cartBackdrop.hidden = false;
+  cartPanel.setAttribute('aria-hidden', 'false');
+  if (cartOpenButton) cartOpenButton.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('cart-open');
+  if (cartCloseButton) cartCloseButton.focus();
+}
+function closeSelyraCart() {
+  if (!cartPanel || !cartBackdrop) return;
+  cartPanel.hidden = true;
+  cartBackdrop.hidden = true;
+  cartPanel.setAttribute('aria-hidden', 'true');
+  if (cartOpenButton) {
+    cartOpenButton.setAttribute('aria-expanded', 'false');
+    cartOpenButton.focus();
+  }
+  document.body.classList.remove('cart-open');
+}
+if (cartOpenButton) cartOpenButton.addEventListener('click', openSelyraCart);
+if (cartCloseButton) cartCloseButton.addEventListener('click', closeSelyraCart);
+if (cartBackdrop) cartBackdrop.addEventListener('click', closeSelyraCart);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && cartPanel && !cartPanel.hidden) closeSelyraCart();
+});
+document.addEventListener('click', event => {
+  const addButton = event.target.closest('.add-to-cart');
+  if (addButton) {
+    const id = addButton.dataset.productId;
+    const name = addButton.dataset.productName;
+    if (id && name && !selyraCart.some(item => item.id === id)) selyraCart.push({ id, name });
+    saveSelyraCart();
+    renderSelyraCart();
+    openSelyraCart();
+    return;
+  }
+  const removeButton = event.target.closest('[data-remove-id]');
+  if (removeButton) {
+    const id = decodeURIComponent(removeButton.dataset.removeId);
+    selyraCart = selyraCart.filter(item => item.id !== id);
+    saveSelyraCart();
+    renderSelyraCart();
+  }
+});
+if (cartClear) cartClear.addEventListener('click', () => {
+  selyraCart = [];
+  saveSelyraCart();
+  renderSelyraCart();
+});
+if (cartCheckout) cartCheckout.addEventListener('click', () => {
+  if (!selyraCart.length) return;
+  const selection = selyraCart.map((item, index) => (index + 1) + '. ' + item.name).join('\n');
+  const subject = encodeURIComponent('Consulta de compra — Selyra');
+  const body = encodeURIComponent('Hola Selyra, me interesa consultar disponibilidad y precio de estas obras:\n\n' + selection + '\n\n¿Podrías indicarme precio final, envío y forma de pago?');
+  window.location.href = 'mailto:contact@artselyra.com?subject=' + subject + '&body=' + body;
+});
+renderSelyraCart();
