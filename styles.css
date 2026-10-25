@@ -604,3 +604,9 @@ body.cart-open{overflow:hidden}
   .cart-trigger svg{width:15px;height:15px}
   .cart-panel{padding:24px 20px 20px}
 }
+
+/* Logotipo Selyra en la cabecera: tamaño adaptable */
+.site-header .wordmark{display:inline-flex;align-items:center;justify-content:center;flex:0 1 auto;min-width:0;line-height:1}
+.site-header .wordmark img{display:block;width:clamp(170px,20vw,260px);height:auto;max-width:100%;object-fit:contain}
+@media(max-width:800px){.site-header .wordmark img{width:clamp(155px,33vw,220px)}}
+@media(max-width:480px){.site-header .wordmark img{width:clamp(145px,43vw,185px)}}
