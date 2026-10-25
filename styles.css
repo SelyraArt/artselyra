@@ -386,3 +386,121 @@ body,.site-header,.intro,.process,.prints{background:#fafaf8}
   .works-heading h2,
   .prints-heading h2{font-size:30px}
 }
+
+
+/* SELYRA — ICONOS SOCIALES Y PÁGINA DE CONTACTO */
+.social-footer{
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  padding:24px 6%;
+  background:#fafaf8;
+  color:#222;
+  border-top:1px solid rgba(34,34,34,.12);
+}
+.social-icon{
+  width:24px;
+  height:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:inherit;
+}
+.social-icon svg{width:100%;height:100%;display:block}
+.contact-page{min-height:100vh;display:flex;flex-direction:column}
+.contact-page-header{flex-shrink:0}
+.contact-page-header .nav-contact{border-bottom:1px solid #222;padding-bottom:5px}
+.contact-page-main{
+  width:min(100% - 40px, 680px);
+  margin:0 auto;
+  padding:54px 0 76px;
+  flex:1;
+}
+.contact-back-link{
+  display:inline-block;
+  margin-bottom:42px;
+  color:#686863;
+  font-size:11px;
+}
+.contact-back-link:hover,.contact-direct-email a:hover{opacity:.65}
+.contact-page-heading{text-align:center;max-width:550px;margin:0 auto 42px}
+.contact-page-heading .section-kicker{margin:0 0 18px;color:#686863}
+.contact-page-heading h1{
+  margin:0 0 18px;
+  font-size:clamp(42px,7vw,66px);
+  line-height:1.06;
+  font-weight:500;
+}
+.contact-page-heading h1 em{font-style:italic;color:#686863}
+.contact-page-heading>p:last-child{
+  max-width:480px;
+  margin:0 auto;
+  color:#686863;
+  font-size:13px;
+  line-height:1.9;
+}
+.contact-form{display:grid;grid-template-columns:1fr;gap:10px}
+.contact-form label{
+  margin-top:13px;
+  font-size:11px;
+  font-weight:500;
+}
+.contact-form input,.contact-form select,.contact-form textarea{
+  width:100%;
+  border:1px solid rgba(34,34,34,.22);
+  border-radius:0;
+  background:transparent;
+  padding:14px 13px;
+  color:#222;
+  font:400 12px "DM Sans",sans-serif;
+}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#898983}
+.contact-form textarea{resize:vertical;min-height:140px;line-height:1.7}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{
+  outline:1px solid #555550;
+  outline-offset:2px;
+}
+.contact-submit{
+  justify-self:start;
+  display:inline-flex;
+  align-items:center;
+  gap:32px;
+  margin-top:18px;
+  padding:15px 19px;
+  border:0;
+  background:#222;
+  color:#fafaf8;
+  font:500 11px "DM Sans",sans-serif;
+  cursor:pointer;
+}
+.contact-submit:hover{opacity:.8}
+.contact-form-note{
+  max-width:500px;
+  margin:8px 0 0;
+  color:#777771;
+  font-size:10px;
+  line-height:1.7;
+}
+.contact-direct-email{
+  margin:35px 0 0;
+  text-align:center;
+  color:#686863;
+  font-size:11px;
+  line-height:1.8;
+}
+.contact-direct-email a{color:#222;text-decoration:underline;text-underline-offset:3px}
+.contact-page .social-footer{margin-top:auto}
+@media(max-width:800px){
+  .contact-page-main{padding-top:38px}
+  .contact-back-link{margin-bottom:34px}
+  .contact-page-header .nav{gap:16px}
+}
+@media(max-width:480px){
+  .contact-page-header .nav{gap:10px 15px}
+  .contact-page-main{width:calc(100% - 36px);padding-bottom:55px}
+  .contact-page-heading{margin-bottom:30px}
+  .contact-page-heading h1{font-size:43px}
+  .social-footer{min-height:84px}
+}
