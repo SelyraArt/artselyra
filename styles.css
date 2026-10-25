@@ -335,3 +335,39 @@ body,.site-header,.intro,.process,.prints{background:#fafaf8}
   .store-preferences{top:9px;right:4%;gap:10px}
   .preference-control select{font-size:9px;max-width:90px}
 }
+
+
+/* Selector de idioma con banderas visibles también en Safari */
+.language-picker{position:relative;display:flex;align-items:center}
+.language-picker-button{
+  display:flex;align-items:center;gap:6px;
+  border:0;background:transparent;color:#333;
+  font:500 10px "DM Sans",sans-serif;letter-spacing:.02em;
+  padding:5px 2px;cursor:pointer;white-space:nowrap
+}
+.language-flag{font-size:16px;line-height:1.1}
+.picker-chevron{
+  width:6px;height:6px;border-right:1px solid #555;border-bottom:1px solid #555;
+  transform:rotate(45deg);margin:-3px 2px 0 3px
+}
+.language-picker-menu{
+  position:absolute;top:calc(100% + 9px);right:0;z-index:30;
+  min-width:155px;max-height:310px;overflow-y:auto;
+  background:#fff;border:1px solid rgba(36,34,31,.14);
+  box-shadow:0 10px 28px rgba(36,34,31,.12);padding:5px
+}
+.language-picker-menu[hidden]{display:none}
+.language-picker-menu button{
+  width:100%;display:flex;align-items:center;gap:9px;
+  padding:9px 10px;border:0;background:transparent;text-align:left;
+  color:#333;font:400 11px "DM Sans",sans-serif;cursor:pointer;white-space:nowrap
+}
+.language-picker-menu button span{font-size:16px;line-height:1}
+.language-picker-menu button:hover,
+.language-picker-menu button[aria-selected="true"]{background:#f1efe9}
+.language-picker-button:focus-visible,
+.language-picker-menu button:focus-visible{outline:1px solid #777;outline-offset:2px}
+@media(max-width:480px){
+  .language-picker-button{font-size:9px;gap:4px}
+  .language-flag,.language-picker-menu button span{font-size:15px}
+}
