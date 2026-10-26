@@ -715,3 +715,13 @@ body.cart-open{overflow:hidden}
 .hero-youtube{position:absolute;top:50%;left:50%;width:max(100%,177.78vh);height:max(100%,56.25vw);min-width:100%;min-height:100%;transform:translate(-50%,-50%);border:0;pointer-events:none;filter:saturate(.82) brightness(.86)}
 .hero-video-overlay{pointer-events:none}
 @media(max-width:700px){.hero-youtube{width:calc(100vh * 1.7778);height:100vh;min-height:100%;min-width:100%}}
+
+/* Recuperar exactamente el formato compacto anterior de la portada. */
+.hero-video{width:100%;min-height:0!important;height:auto!important;aspect-ratio:auto!important;display:block!important;padding:0!important;background:var(--paper)!important;overflow:visible!important}
+.hero-video::before{content:"";display:block;width:86%;max-width:1050px;aspect-ratio:16/7;margin:34px auto 42px}
+.hero-youtube,.hero-video-overlay{position:absolute;top:34px;left:50%;width:min(86%,1050px);height:auto;aspect-ratio:16/7;min-width:0;min-height:0;transform:translateX(-50%);border:0;overflow:hidden}
+.hero-youtube{z-index:0;object-fit:cover}
+.hero-video-overlay{z-index:1;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.24))}
+.hero-showreel-caption{bottom:62px}
+@media(max-width:800px){.hero-video::before{width:90%;aspect-ratio:4/3;margin:26px auto 34px}.hero-youtube,.hero-video-overlay{top:26px;width:90%;aspect-ratio:4/3}.hero-showreel-caption{bottom:52px}}
+@media(max-width:480px){.hero-video::before{width:92%;margin:26px auto 34px}.hero-youtube,.hero-video-overlay{width:92%}.hero-showreel-caption{bottom:49px;font-size:9px}}
