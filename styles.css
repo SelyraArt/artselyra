@@ -731,3 +731,26 @@ body.cart-open{overflow:hidden}
 
 /* Naranja intenso para la palabra arte del título de contacto. */
 .contact-page-heading .contact-art-accent{color:#e46b24!important}
+
+/* Catálogo más compacto: permite explorar más obras de un vistazo. */
+@media(min-width:801px){
+  .works .work-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
+  .works .work-card-offset{margin-top:0}
+  .works .work-image{height:auto;aspect-ratio:4/5}
+  .prints .prints-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
+  .prints .print-image{height:auto;min-height:0;aspect-ratio:4/5}
+}
+@media(max-width:800px){
+  .works .work-grid,.prints .prints-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+  .works .work-card,.prints .print-card{min-width:0;display:block!important}
+  .works .work-card-offset{margin-top:0}
+  .works .work-card:last-child{display:block}
+  .works .work-image{height:auto;min-height:0;aspect-ratio:4/5}
+  .prints .print-image{height:auto;min-height:0;aspect-ratio:4/5;padding:10px}
+  .works .work-meta,.prints .print-meta{gap:5px}
+  .works .work-meta h3,.prints .print-meta h3{font-size:clamp(13px,2.7vw,17px)}
+  .works .work-meta p,.prints .print-meta p{font-size:clamp(10px,2vw,12px)}
+  .works .add-to-cart,.prints .add-to-cart{width:100%;max-width:100%;font-size:clamp(10px,2vw,12px);padding:10px 6px;white-space:normal}
+  .works .work-number,.works .work-tag{font-size:10px}
+  .prints .print-image span{font-size:clamp(8px,1.8vw,11px)}
+}
