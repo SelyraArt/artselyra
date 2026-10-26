@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261026-4">
+  <link rel="stylesheet" href="styles.css?v=20261026-5">
 </head>
 <body>
   <header class="site-header">
@@ -80,7 +80,7 @@
     </nav>
     <button class="cart-trigger" type="button" id="cart-open" aria-label="Abrir carrito de compra" aria-controls="cart-panel" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L20 8H6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.2" fill="currentColor"/><circle cx="17" cy="19" r="1.2" fill="currentColor"/></svg>
-      <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+      <span class="cart-count" id="cart-count" aria-live="polite" hidden></span>
     </button>
   </header>
 
@@ -93,7 +93,7 @@
     </nav>
     <button class="compact-cart" type="button" id="compact-cart-open" aria-label="Abrir carrito de compra" aria-controls="cart-panel" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L20 8H6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.2" fill="currentColor"/><circle cx="17" cy="19" r="1.2" fill="currentColor"/></svg>
-      <span class="cart-count" id="compact-cart-count" aria-live="polite">0</span>
+      <span class="cart-count" id="compact-cart-count" aria-live="polite" hidden></span>
     </button>
   </div>
 
@@ -207,6 +207,6 @@
     </span>
   </footer>
   <script src="translations.js?v=20261026-1"></script>
-  <script src="script.js?v=20261026-4"></script>
+  <script src="script.js?v=20261026-5"></script>
 </body>
 </html>
