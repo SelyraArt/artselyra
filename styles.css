@@ -803,3 +803,8 @@ body.cart-open{overflow:hidden}
   .prints .print-card{flex:0 0 calc((100cqw - 12px)/2)!important;width:calc((100cqw - 12px)/2)!important;box-sizing:border-box}
   .prints-carousel.is-expanded .print-card{width:auto!important;flex:auto!important}
 }
+
+/* Flechas simétricas para navegar por los prints. */
+.prints-prev{display:grid;place-items:center;border:1px solid #39332d;border-radius:50%;background:transparent;color:#29231e;width:46px;height:46px;font-size:23px;cursor:pointer}
+.prints-prev:hover{background:#29231e;color:white}
+.prints-prev[hidden]{display:none!important}
