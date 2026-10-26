@@ -13,3 +13,16 @@ Object.assign(window.SELYRA_TRANSLATIONS["da"],{"Nombre":"Navn","Si tienes algun
 Object.assign(window.SELYRA_TRANSLATIONS["no"],{"Nombre":"Navn","Si tienes alguna pregunta sobre una obra, quieres hacer un encargo o proponer una colaboración, estaré encantada de leerte.":"Har du spørsmål om et kunstverk, ønsker å bestille et verk eller foreslå et samarbeid? Jeg vil gjerne høre fra deg.","Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para contact@artselyra.com. No se envía ni se almacena nada en esta página.":"Når du sender, åpnes e-postappen med en klargjort melding til contact@artselyra.com. Ingenting sendes eller lagres på denne siden.","¿Prefieres escribir directamente?":"Vil du heller skrive direkte?","CONTACTO":"KONTAKT","Art":"Kunst"});
 Object.assign(window.SELYRA_TRANSLATIONS["ja"],{"Nombre":"お名前","Si tienes alguna pregunta sobre una obra, quieres hacer un encargo o proponer una colaboración, estaré encantada de leerte.":"作品についてのご質問、制作のご依頼、コラボレーションのご提案など、お気軽にご連絡ください。","Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para contact@artselyra.com. No se envía ni se almacena nada en esta página.":"送信するとメールアプリが開き、contact@artselyra.com 宛てのメッセージが作成されます。このページでは送信や保存は行いません。","¿Prefieres escribir directamente?":"直接メールをご希望ですか？","CONTACTO":"お問い合わせ","Art":"アート"});
 Object.assign(window.SELYRA_TRANSLATIONS["zh"],{"Nombre":"姓名","Si tienes alguna pregunta sobre una obra, quieres hacer un encargo o proponer una colaboración, estaré encantada de leerte.":"如果您对作品有疑问、希望定制作品或提出合作建议，欢迎与我联系。","Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para contact@artselyra.com. No se envía ni se almacena nada en esta página.":"点击提交后，邮件应用将打开并准备发送至 contact@artselyra.com 的邮件。本页面不会发送或保存任何信息。","¿Prefieres escribir directamente?":"想直接发邮件吗？","CONTACTO":"联系我们","Art":"艺术"});
+
+// Controles de expansión de las galerías.
+Object.assign(window.SELYRA_TRANSLATIONS.en,{"Ver más":"View more","Ver menos":"View less"});
+Object.assign(window.SELYRA_TRANSLATIONS.fr,{"Ver más":"Voir plus","Ver menos":"Voir moins"});
+Object.assign(window.SELYRA_TRANSLATIONS.de,{"Ver más":"Mehr anzeigen","Ver menos":"Weniger anzeigen"});
+Object.assign(window.SELYRA_TRANSLATIONS.it,{"Ver más":"Mostra di più","Ver menos":"Mostra meno"});
+Object.assign(window.SELYRA_TRANSLATIONS.pt,{"Ver más":"Ver mais","Ver menos":"Ver menos"});
+Object.assign(window.SELYRA_TRANSLATIONS.nl,{"Ver más":"Meer bekijken","Ver menos":"Minder bekijken"});
+Object.assign(window.SELYRA_TRANSLATIONS.sv,{"Ver más":"Visa fler","Ver menos":"Visa färre"});
+Object.assign(window.SELYRA_TRANSLATIONS.da,{"Ver más":"Se mere","Ver menos":"Se mindre"});
+Object.assign(window.SELYRA_TRANSLATIONS.no,{"Ver más":"Se mer","Ver menos":"Se mindre"});
+Object.assign(window.SELYRA_TRANSLATIONS.ja,{"Ver más":"もっと見る","Ver menos":"閉じる"});
+Object.assign(window.SELYRA_TRANSLATIONS.zh,{"Ver más":"查看更多","Ver menos":"收起"});
