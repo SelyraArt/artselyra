@@ -221,8 +221,8 @@ function saveSelyraCart() {
 }
 function renderSelyraCart() {
   const count = selyraCart.length;
-  if (cartCount) cartCount.textContent = String(count);
-  if (compactCartCount) compactCartCount.textContent = String(count);
+  if (cartCount) { cartCount.textContent = count ? String(count) : ''; cartCount.hidden = count === 0; }
+  if (compactCartCount) { compactCartCount.textContent = count ? String(count) : ''; compactCartCount.hidden = count === 0; }
   if (cartHeadingCount) cartHeadingCount.textContent = '(' + count + ')';
   if (cartTotal) cartTotal.textContent = (count ? selyraTranslate('Precio por confirmar') : selyraTranslate('Precio por confirmar')) + ' · ' + (localStorage.getItem('selyra-currency') || 'EUR');
   if (cartItemsContainer) {
