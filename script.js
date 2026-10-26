@@ -307,3 +307,46 @@ renderSelyraCart();
 
 applySelyraLanguage();
 refreshCurrencyDisplay();
+
+// Galería de originales: cuatro muestras y ampliación de la colección.
+const originalsMore = document.getElementById('originals-more');
+if (originalsMore) originalsMore.addEventListener('click', () => {
+  const expanded = originalsMore.getAttribute('aria-expanded') === 'true';
+  document.querySelectorAll('[data-extra-original]').forEach(card => { card.hidden = expanded; });
+  originalsMore.setAttribute('aria-expanded', String(!expanded));
+  originalsMore.firstChild.textContent = selyraGalleryLabel(expanded ? 'Ver más' : 'Ver menos') + ' ';
+  originalsMore.querySelector('span').textContent = expanded ? '↓' : '↑';
+});
+function selyraGalleryLabel(key) {
+  const lang = localStorage.getItem('selyra-language') || 'es';
+  return ((window.SELYRA_TRANSLATIONS || {})[lang] || {})[key] || key;
+}
+// Carrusel de prints: flecha para recorrer, Ver más al llegar al final.
+const printsCarousel = document.getElementById('prints-carousel');
+const printsNext = document.getElementById('prints-next');
+const printsMore = document.getElementById('prints-more');
+if (printsCarousel && printsNext && printsMore) {
+  const updatePrintsEnd = () => {
+    if (printsCarousel.classList.contains('is-expanded')) return;
+    const atEnd = printsCarousel.scrollLeft + printsCarousel.clientWidth >= printsCarousel.scrollWidth - 8;
+    printsNext.hidden = atEnd;
+    printsMore.hidden = !atEnd;
+  };
+  printsNext.addEventListener('click', () => {
+    const card = printsCarousel.querySelector('.print-card');
+    const gap = parseFloat(getComputedStyle(printsCarousel.querySelector('.prints-grid')).gap) || 0;
+    printsCarousel.scrollBy({left: card.getBoundingClientRect().width + gap, behavior:'smooth'});
+  });
+  printsCarousel.addEventListener('scroll', updatePrintsEnd, {passive:true});
+  window.addEventListener('resize', updatePrintsEnd);
+  printsMore.addEventListener('click', () => {
+    const expanded = printsCarousel.classList.toggle('is-expanded');
+    printsMore.setAttribute('aria-expanded', String(expanded));
+    printsMore.firstChild.textContent = selyraGalleryLabel(expanded ? 'Ver menos' : 'Ver más') + ' ';
+    printsMore.querySelector('span').textContent = expanded ? '↑' : '↓';
+    printsMore.hidden = false;
+    printsNext.hidden = expanded;
+    if (!expanded) { printsCarousel.scrollLeft = 0; updatePrintsEnd(); }
+  });
+  updatePrintsEnd();
+}
