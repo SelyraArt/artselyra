@@ -698,3 +698,6 @@ body.cart-open{overflow:hidden}
 .site-header .nav .cart-trigger{position:relative!important;display:inline-flex!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;order:initial!important;align-self:center!important;flex:0 0 38px;margin:0 0 0 clamp(12px,1.6vw,25px)!important;padding:6px!important;vertical-align:middle}
 @media(max-width:800px){.site-header .nav{gap:clamp(8px,1.7vw,17px)!important}.site-header .nav .cart-trigger{margin-left:10px!important}}
 @media(max-width:480px){.site-header .nav{gap:clamp(5px,1.7vw,10px)!important}.site-header .nav .cart-trigger{flex-basis:28px;min-width:28px;min-height:30px;margin-left:5px!important;padding:3px!important}.site-header .nav .cart-trigger svg{width:18px;height:18px}}
+
+/* Transición limpia entre encabezado y vídeo, sin línea divisoria. */
+.site-header:not(.contact-page-header){border-bottom:0!important;box-shadow:none!important}
