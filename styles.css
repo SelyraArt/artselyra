@@ -728,3 +728,6 @@ body.cart-open{overflow:hidden}
 
 /* Acento naranja terracota suave en el título de Contacto. */
 .contact-page-heading .contact-art-accent{color:#bd805c!important;font-style:italic}
+
+/* Naranja intenso para la palabra arte del título de contacto. */
+.contact-page-heading .contact-art-accent{color:#e46b24!important}
