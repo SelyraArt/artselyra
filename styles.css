@@ -709,3 +709,9 @@ body.cart-open{overflow:hidden}
 .hero-showreel-caption{position:absolute;left:50%;bottom:clamp(26px,5vw,64px);transform:translateX(-50%);z-index:2;color:#fffaf2;text-align:center;font:500 clamp(10px,1.1vw,13px) "DM Sans",sans-serif;letter-spacing:.27em;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.45)}
 .hero-showreel-caption span{margin:0 .65em;opacity:.75}
 @media(prefers-reduced-motion:reduce){.hero-showreel{display:none}}
+
+/* Vídeo provisional de YouTube en portada, encuadrado sin controles visibles. */
+.hero-video{position:relative;min-height:clamp(440px,58vw,720px);padding:0!important;display:block!important;overflow:hidden}
+.hero-youtube{position:absolute;top:50%;left:50%;width:max(100%,177.78vh);height:max(100%,56.25vw);min-width:100%;min-height:100%;transform:translate(-50%,-50%);border:0;pointer-events:none;filter:saturate(.82) brightness(.86)}
+.hero-video-overlay{pointer-events:none}
+@media(max-width:700px){.hero-youtube{width:calc(100vh * 1.7778);height:100vh;min-height:100%;min-width:100%}}
