@@ -692,3 +692,9 @@ body.cart-open{overflow:hidden}
 .compact-cart{margin-left:2px;flex-basis:26px;width:26px}
 .compact-cart svg{width:18px;height:18px}
 }
+
+/* El carrito pertenece al mismo renglón que Contactar, nunca debajo. */
+.site-header .nav{flex-wrap:nowrap!important;white-space:nowrap}
+.site-header .nav .cart-trigger{position:relative!important;display:inline-flex!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;order:initial!important;align-self:center!important;flex:0 0 38px;margin:0 0 0 clamp(12px,1.6vw,25px)!important;padding:6px!important;vertical-align:middle}
+@media(max-width:800px){.site-header .nav{gap:clamp(8px,1.7vw,17px)!important}.site-header .nav .cart-trigger{margin-left:10px!important}}
+@media(max-width:480px){.site-header .nav{gap:clamp(5px,1.7vw,10px)!important}.site-header .nav .cart-trigger{flex-basis:28px;min-width:28px;min-height:30px;margin-left:5px!important;padding:3px!important}.site-header .nav .cart-trigger svg{width:18px;height:18px}}
