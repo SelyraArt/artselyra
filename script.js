@@ -164,6 +164,7 @@ if (contactForm) {
 
 // Cabecera inteligente: se oculta al bajar y vuelve al subir.
 const siteHeader = document.querySelector('.site-header');
+const compactNavigation = document.getElementById('compact-navigation');
 let lastScrollY = window.scrollY;
 let scrollTicking = false;
 if (siteHeader) {
@@ -180,6 +181,11 @@ if (siteHeader) {
         siteHeader.classList.add('header-hidden');
         siteHeader.classList.remove('header-visible');
       }
+      if (compactNavigation) {
+        const shouldShow = currentY > 150 && (currentY < lastScrollY - 2 || cartIsOpen);
+        if (shouldShow) compactNavigation.classList.add('is-visible');
+        else if (currentY < 150 || currentY > lastScrollY + 5) compactNavigation.classList.remove('is-visible');
+      }
       lastScrollY = currentY;
       scrollTicking = false;
     });
@@ -188,6 +194,8 @@ if (siteHeader) {
 
 // Carrito de selección local. Los artículos se conservan en este navegador.
 const cartOpenButton = document.getElementById('cart-open');
+const compactCartOpenButton = document.getElementById('compact-cart-open');
+const compactCartCount = document.getElementById('compact-cart-count');
 const cartCloseButton = document.getElementById('cart-close');
 const cartPanel = document.getElementById('cart-panel');
 const cartBackdrop = document.getElementById('cart-backdrop');
@@ -210,6 +218,7 @@ function saveSelyraCart() {
 function renderSelyraCart() {
   const count = selyraCart.length;
   if (cartCount) cartCount.textContent = String(count);
+  if (compactCartCount) compactCartCount.textContent = String(count);
   if (cartHeadingCount) cartHeadingCount.textContent = '(' + count + ')';
   if (cartTotal) cartTotal.textContent = (count ? selyraTranslate('Precio por confirmar') : selyraTranslate('Precio por confirmar')) + ' · ' + (localStorage.getItem('selyra-currency') || 'EUR');
   if (cartItemsContainer) {
@@ -236,6 +245,7 @@ function openSelyraCart() {
   cartBackdrop.hidden = false;
   cartPanel.setAttribute('aria-hidden', 'false');
   if (cartOpenButton) cartOpenButton.setAttribute('aria-expanded', 'true');
+  if (compactCartOpenButton) compactCartOpenButton.setAttribute('aria-expanded', 'true');
   document.body.classList.add('cart-open');
   if (cartCloseButton) cartCloseButton.focus();
 }
@@ -248,9 +258,11 @@ function closeSelyraCart() {
     cartOpenButton.setAttribute('aria-expanded', 'false');
     cartOpenButton.focus();
   }
+  if (compactCartOpenButton) compactCartOpenButton.setAttribute('aria-expanded', 'false');
   document.body.classList.remove('cart-open');
 }
 if (cartOpenButton) cartOpenButton.addEventListener('click', openSelyraCart);
+if (compactCartOpenButton) compactCartOpenButton.addEventListener('click', openSelyraCart);
 if (cartCloseButton) cartCloseButton.addEventListener('click', closeSelyraCart);
 if (cartBackdrop) cartBackdrop.addEventListener('click', closeSelyraCart);
 document.addEventListener('keydown', event => {
