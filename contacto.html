@@ -13,6 +13,63 @@
 </head>
 <body class="contact-page">
   <header class="site-header contact-page-header">
+    <div class="store-preferences" aria-label="Preferencias de tienda">
+      <label class="preference-control">
+        <span class="sr-only">Idioma</span>
+        <select id="language-select" class="sr-only" aria-label="Seleccionar idioma">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="da">Dansk</option>
+          <option value="no">Norsk</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+        </select>
+        <div class="language-picker">
+          <button type="button" id="language-picker-button" class="language-picker-button" aria-label="Seleccionar idioma" aria-expanded="false" aria-haspopup="listbox">
+            <span id="language-current-flag" class="language-flag" aria-hidden="true">🇪🇸</span>
+            <span id="language-current-name">Español</span>
+            <span class="picker-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="language-picker-menu" class="language-picker-menu" role="listbox" aria-label="Idiomas disponibles" hidden>
+            <button type="button" role="option" data-language="es"><span>🇪🇸</span> Español</button>
+            <button type="button" role="option" data-language="en"><span>🇬🇧</span> English</button>
+            <button type="button" role="option" data-language="fr"><span>🇫🇷</span> Français</button>
+            <button type="button" role="option" data-language="de"><span>🇩🇪</span> Deutsch</button>
+            <button type="button" role="option" data-language="it"><span>🇮🇹</span> Italiano</button>
+            <button type="button" role="option" data-language="pt"><span>🇵🇹</span> Português</button>
+            <button type="button" role="option" data-language="nl"><span>🇳🇱</span> Nederlands</button>
+            <button type="button" role="option" data-language="sv"><span>🇸🇪</span> Svenska</button>
+            <button type="button" role="option" data-language="da"><span>🇩🇰</span> Dansk</button>
+            <button type="button" role="option" data-language="no"><span>🇳🇴</span> Norsk</button>
+            <button type="button" role="option" data-language="ja"><span>🇯🇵</span> 日本語</button>
+            <button type="button" role="option" data-language="zh"><span>🇨🇳</span> 中文</button>
+          </div>
+        </div>
+      </label>
+      <label class="preference-control">
+        <span class="sr-only">Moneda</span>
+        <select id="currency-select" aria-label="Seleccionar moneda">
+          <option value="EUR">EUR €</option>
+          <option value="USD">USD $</option>
+          <option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option>
+          <option value="AUD">AUD $</option>
+          <option value="CHF">CHF</option>
+          <option value="JPY">JPY ¥</option>
+          <option value="CNY">CNY ¥</option>
+          <option value="MXN">MXN $</option>
+          <option value="BRL">BRL R$</option>
+          <option value="COP">COP $</option>
+          <option value="SEK">SEK kr</option>
+        </select>
+      </label>
+    </div>
     <a class="wordmark" href="index.html" aria-label="Selyra, inicio"><img src="assets/selyra-wordmark.svg?v=2" alt="Selyra" width="260" height="75"></a>
     <nav class="nav" aria-label="Navegación principal">
       <a href="index.html#obras">Originales</a>
@@ -65,6 +122,7 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.1a4.2 4.2 0 1 1-3.5-4.14V13a1.8 1.8 0 1 0 1.1 1.66V3h2.4c.35 2.2 1.65 3.7 4 4.1v2.5A8.1 8.1 0 0 1 14 7.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </span>
   </footer>
-  <script src="script.js?v=20261025-9"></script>
+  <script src="translations.js?v=20261026-1"></script>
+  <script src="script.js?v=20261026-1"></script>
 </body>
 </html>
