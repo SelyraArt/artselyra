@@ -162,31 +162,35 @@ if (contactForm) {
 }
 
 
-// Cabecera inteligente: se oculta al bajar y vuelve al subir.
+// Una sola barra visible: cabecera completa al inicio, barra fina al subir.
 const siteHeader = document.querySelector('.site-header');
 const compactNavigation = document.getElementById('compact-navigation');
 let lastScrollY = window.scrollY;
 let scrollTicking = false;
+function updateNavigationOnScroll() {
+  const currentY = window.scrollY;
+  const cartIsOpen = document.body.classList.contains('cart-open');
+  const atTop = currentY < 110;
+  const goingUp = currentY < lastScrollY - 2;
+  const goingDown = currentY > lastScrollY + 5;
+  if (siteHeader) {
+    siteHeader.classList.toggle('header-hidden', !atTop);
+    siteHeader.classList.toggle('header-visible', atTop);
+  }
+  if (compactNavigation) {
+    if (atTop) compactNavigation.classList.remove('is-visible');
+    else if (goingUp || cartIsOpen) compactNavigation.classList.add('is-visible');
+    else if (goingDown) compactNavigation.classList.remove('is-visible');
+  }
+  lastScrollY = currentY;
+}
 if (siteHeader) {
+  updateNavigationOnScroll();
   window.addEventListener('scroll', () => {
     if (scrollTicking) return;
     scrollTicking = true;
     window.requestAnimationFrame(() => {
-      const currentY = window.scrollY;
-      const cartIsOpen = document.body.classList.contains('cart-open');
-      if (currentY < 70 || currentY < lastScrollY || cartIsOpen) {
-        siteHeader.classList.remove('header-hidden');
-        siteHeader.classList.add('header-visible');
-      } else if (currentY > lastScrollY + 5) {
-        siteHeader.classList.add('header-hidden');
-        siteHeader.classList.remove('header-visible');
-      }
-      if (compactNavigation) {
-        const shouldShow = currentY > 150 && (currentY < lastScrollY - 2 || cartIsOpen);
-        if (shouldShow) compactNavigation.classList.add('is-visible');
-        else if (currentY < 150 || currentY > lastScrollY + 5) compactNavigation.classList.remove('is-visible');
-      }
-      lastScrollY = currentY;
+      updateNavigationOnScroll();
       scrollTicking = false;
     });
   }, { passive: true });
