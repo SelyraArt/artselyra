@@ -59,6 +59,7 @@ if (languageSelect) {
     localStorage.setItem('selyra-language', languageSelect.value);
     updateLanguagePicker();
     applySelyraLanguage();
+    renderSelyraCart();
   });
 }
 if (languagePickerButton && languagePickerMenu) {
@@ -92,6 +93,7 @@ if (currencySelect) {
   currencySelect.addEventListener('change', () => {
     localStorage.setItem('selyra-currency', currencySelect.value);
     refreshCurrencyDisplay();
+    renderSelyraCart();
   });
 }
 
@@ -209,15 +211,18 @@ function renderSelyraCart() {
   const count = selyraCart.length;
   if (cartCount) cartCount.textContent = String(count);
   if (cartHeadingCount) cartHeadingCount.textContent = '(' + count + ')';
-  if (cartTotal) cartTotal.textContent = count ? 'Precio por confirmar' : 'Se confirmará el precio';
+  if (cartTotal) cartTotal.textContent = (count ? selyraTranslate('Precio por confirmar') : selyraTranslate('Precio por confirmar')) + ' · ' + (localStorage.getItem('selyra-currency') || 'EUR');
   if (cartItemsContainer) {
     if (!count) {
-      cartItemsContainer.innerHTML = '<p class="cart-empty">Tu carrito está vacío.</p>';
+      cartItemsContainer.innerHTML = '<p class="cart-empty"></p>';
+      cartItemsContainer.querySelector('.cart-empty').textContent = selyraTranslate('Tu carrito está vacío.');
     } else {
       cartItemsContainer.innerHTML = selyraCart.map(item =>
         '<div class="cart-item"><div><p class="cart-item-name"></p><p class="cart-item-detail">Precio por confirmar</p></div><button type="button" class="cart-item-remove" data-remove-id="' + encodeURIComponent(item.id) + '">Quitar</button></div>'
       ).join('');
       cartItemsContainer.querySelectorAll('.cart-item').forEach((row, index) => {
+        row.querySelector('.cart-item-detail').textContent = selyraTranslate('Precio por confirmar');
+        row.querySelector('.cart-item-remove').textContent = selyraTranslate('Quitar');
         const name = row.querySelector('.cart-item-name');
         if (name) name.textContent = selyraCart[index].name;
       });
