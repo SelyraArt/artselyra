@@ -212,7 +212,7 @@ const cartClear = document.getElementById('cart-clear');
 let selyraCart = [];
 try {
   const storedCart = JSON.parse(localStorage.getItem('selyra-cart') || '[]');
-  if (Array.isArray(storedCart)) selyraCart = storedCart.filter(item => item && item.id && item.name);
+  if (Array.isArray(storedCart)) selyraCart = storedCart.filter(item => item && item.id && item.name).map(item => ({id:item.id,name:item.name,quantity:item.id.startsWith('print-') ? Math.max(1,Math.min(99,Number(item.quantity)||1)) : 1,size:item.id.startsWith('print-') ? (['A4','A3','A2'].includes(item.size) ? item.size : 'A3') : null}));
 } catch (error) {
   selyraCart = [];
 }
@@ -220,28 +220,71 @@ function saveSelyraCart() {
   try { localStorage.setItem('selyra-cart', JSON.stringify(selyraCart)); } catch (error) {}
 }
 function renderSelyraCart() {
-  const count = selyraCart.length;
+  const count = selyraCart.reduce((sum, item) => sum + item.quantity, 0);
   if (cartCount) { cartCount.textContent = count ? String(count) : ''; cartCount.hidden = count === 0; }
   if (compactCartCount) { compactCartCount.textContent = count ? String(count) : ''; compactCartCount.hidden = count === 0; }
   if (cartHeadingCount) cartHeadingCount.textContent = '(' + count + ')';
-  if (cartTotal) cartTotal.textContent = (count ? selyraTranslate('Precio por confirmar') : selyraTranslate('Precio por confirmar')) + ' · ' + (localStorage.getItem('selyra-currency') || 'EUR');
+  if (cartTotal) cartTotal.textContent = selyraTranslate('Precio por confirmar') + ' · EUR';
   if (cartItemsContainer) {
-    if (!count) {
-      cartItemsContainer.innerHTML = '<p class="cart-empty"></p>';
-      cartItemsContainer.querySelector('.cart-empty').textContent = selyraTranslate('Tu carrito está vacío.');
-    } else {
-      cartItemsContainer.innerHTML = selyraCart.map(item =>
-        '<div class="cart-item"><div><p class="cart-item-name"></p><p class="cart-item-detail">Precio por confirmar</p></div><button type="button" class="cart-item-remove" data-remove-id="' + encodeURIComponent(item.id) + '">Quitar</button></div>'
-      ).join('');
-      cartItemsContainer.querySelectorAll('.cart-item').forEach((row, index) => {
-        row.querySelector('.cart-item-detail').textContent = selyraTranslate('Precio por confirmar');
-        row.querySelector('.cart-item-remove').textContent = selyraTranslate('Quitar');
-        const name = row.querySelector('.cart-item-name');
-        if (name) name.textContent = selyraCart[index].name;
-      });
+    cartItemsContainer.replaceChildren();
+    if (!selyraCart.length) {
+      const empty = document.createElement('p');
+      empty.className = 'cart-empty';
+      empty.textContent = selyraTranslate('Tu carrito está vacío.');
+      cartItemsContainer.append(empty);
     }
+    selyraCart.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      const details = document.createElement('div');
+      const name = document.createElement('p');
+      name.className = 'cart-item-name';
+      name.textContent = item.name;
+      const price = document.createElement('p');
+      price.className = 'cart-item-detail';
+      price.textContent = selyraTranslate('Precio por confirmar');
+      details.append(name,price);
+      if (item.id.startsWith('print-')) {
+        const sizeLabel = document.createElement('label');
+        sizeLabel.textContent = selyraTranslate('Tamaño') + ': ';
+        const sizeSelect = document.createElement('select');
+        sizeSelect.setAttribute('aria-label', selyraTranslate('Tamaño') + ' — ' + item.name);
+        sizeSelect.dataset.cartSize = item.id;
+        ['A4','A3','A2'].forEach(size => {
+          const option = document.createElement('option');
+          option.value = size; option.textContent = size; option.selected = item.size === size;
+          sizeSelect.append(option);
+        });
+        sizeLabel.append(sizeSelect);
+        details.append(sizeLabel);
+        const qty = document.createElement('div');
+        qty.className = 'cart-quantity';
+        const minus = document.createElement('button');
+        minus.type = 'button'; minus.dataset.cartDecrease = item.id; minus.textContent = '−';
+        minus.setAttribute('aria-label', selyraTranslate('Reducir cantidad'));
+        const number = document.createElement('span');
+        number.textContent = String(item.quantity);
+        const plus = document.createElement('button');
+        plus.type = 'button'; plus.dataset.cartIncrease = item.id; plus.textContent = '+';
+        plus.setAttribute('aria-label', selyraTranslate('Aumentar cantidad'));
+        qty.append(minus,number,plus);
+        details.append(qty);
+      } else {
+        const unique = document.createElement('p');
+        unique.className = 'cart-item-detail';
+        unique.textContent = selyraTranslate('Pieza única') + ' · 1';
+        details.append(unique);
+      }
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'cart-item-remove';
+      remove.dataset.removeId = item.id;
+      remove.textContent = selyraTranslate('Quitar');
+      row.append(details,remove);
+      cartItemsContainer.append(row);
+    });
   }
-  if (cartCheckout) cartCheckout.disabled = count === 0;
+  if (cartCheckout) cartCheckout.disabled = selyraCart.length === 0;
 }
 function openSelyraCart() {
   if (!cartPanel || !cartBackdrop) return;
@@ -277,18 +320,43 @@ document.addEventListener('click', event => {
   if (addButton) {
     const id = addButton.dataset.productId;
     const name = addButton.dataset.productName;
-    if (id && name && !selyraCart.some(item => item.id === id)) selyraCart.push({ id, name });
+    if (id && name) {
+      const existing = selyraCart.find(item => item.id === id);
+      if (existing) {
+        if (id.startsWith('print-')) existing.quantity = Math.min(99, existing.quantity + 1);
+      } else {
+        selyraCart.push({id,name,quantity:1,size:id.startsWith('print-') ? 'A3' : null});
+      }
+    }
     saveSelyraCart();
     renderSelyraCart();
     openSelyraCart();
     return;
   }
+  const adjust = event.target.closest('[data-cart-increase],[data-cart-decrease]');
+  if (adjust) {
+    const id = adjust.dataset.cartIncrease || adjust.dataset.cartDecrease;
+    const item = selyraCart.find(entry => entry.id === id);
+    if (item && item.id.startsWith('print-')) {
+      item.quantity = Math.max(1,Math.min(99,item.quantity + (adjust.dataset.cartIncrease ? 1 : -1)));
+      saveSelyraCart(); renderSelyraCart();
+    }
+    return;
+  }
   const removeButton = event.target.closest('[data-remove-id]');
   if (removeButton) {
-    const id = decodeURIComponent(removeButton.dataset.removeId);
+    const id = removeButton.dataset.removeId;
     selyraCart = selyraCart.filter(item => item.id !== id);
     saveSelyraCart();
     renderSelyraCart();
+  }
+});
+if (cartItemsContainer) cartItemsContainer.addEventListener('change', event => {
+  const select = event.target.closest('[data-cart-size]');
+  if (!select) return;
+  const item = selyraCart.find(entry => entry.id === select.dataset.cartSize);
+  if (item && item.id.startsWith('print-') && ['A4','A3','A2'].includes(select.value)) {
+    item.size = select.value; saveSelyraCart(); renderSelyraCart();
   }
 });
 if (cartClear) cartClear.addEventListener('click', () => {
