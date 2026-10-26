@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F8F7F3">
+  <meta name="description" content="Selyra — retratos originales en acrílico y obras con volumen y textura. Arte contemporáneo hecho para sentirse.">
+  <title>Originales — Selyra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261026-18">
+</head>
+<body class="originals-page">
+  <header class="site-header">
+    <div class="store-preferences" aria-label="Preferencias de tienda">
+      <label class="preference-control">
+        <span class="sr-only">Idioma</span>
+        <select id="language-select" class="sr-only" aria-label="Seleccionar idioma">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="da">Dansk</option>
+          <option value="no">Norsk</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+        </select>
+        <div class="language-picker">
+          <button type="button" id="language-picker-button" class="language-picker-button" aria-label="Seleccionar idioma" aria-expanded="false" aria-haspopup="listbox">
+            <span id="language-current-flag" class="language-flag" aria-hidden="true">🇪🇸</span>
+            <span id="language-current-name">Español</span>
+            <span class="picker-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="language-picker-menu" class="language-picker-menu" role="listbox" aria-label="Idiomas disponibles" hidden>
+            <button type="button" role="option" data-language="es"><span>🇪🇸</span> Español</button>
+            <button type="button" role="option" data-language="en"><span>🇬🇧</span> English</button>
+            <button type="button" role="option" data-language="fr"><span>🇫🇷</span> Français</button>
+            <button type="button" role="option" data-language="de"><span>🇩🇪</span> Deutsch</button>
+            <button type="button" role="option" data-language="it"><span>🇮🇹</span> Italiano</button>
+            <button type="button" role="option" data-language="pt"><span>🇵🇹</span> Português</button>
+            <button type="button" role="option" data-language="nl"><span>🇳🇱</span> Nederlands</button>
+            <button type="button" role="option" data-language="sv"><span>🇸🇪</span> Svenska</button>
+            <button type="button" role="option" data-language="da"><span>🇩🇰</span> Dansk</button>
+            <button type="button" role="option" data-language="no"><span>🇳🇴</span> Norsk</button>
+            <button type="button" role="option" data-language="ja"><span>🇯🇵</span> 日本語</button>
+            <button type="button" role="option" data-language="zh"><span>🇨🇳</span> 中文</button>
+          </div>
+        </div>
+      </label>
+      <label class="preference-control">
+        <span class="sr-only">Moneda</span>
+        <select id="currency-select" aria-label="Seleccionar moneda">
+          <option value="EUR">EUR €</option>
+          <option value="USD">USD $</option>
+          <option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option>
+          <option value="AUD">AUD $</option>
+          <option value="CHF">CHF</option>
+          <option value="JPY">JPY ¥</option>
+          <option value="CNY">CNY ¥</option>
+          <option value="MXN">MXN $</option>
+          <option value="BRL">BRL R$</option>
+          <option value="COP">COP $</option>
+          <option value="SEK">SEK kr</option>
+        </select>
+      </label>
+    </div>
+    <a class="wordmark" href="index.html" aria-label="Selyra, inicio"><img src="assets/selyra-wordmark.svg?v=2" alt="Selyra" width="260" height="75"></a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="index.html#obras">Originales</a>
+      <a href="index.html#prints">Prints</a>
+      <a href="index.html#universo">Sobre mí</a>
+      <a class="nav-contact" href="contacto.html">Contactar</a>
+      <button class="cart-trigger" type="button" id="cart-open" aria-label="Abrir carrito de compra" aria-controls="cart-panel" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L20 8H6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.2" fill="currentColor"/><circle cx="17" cy="19" r="1.2" fill="currentColor"/></svg>
+        <span class="cart-count" id="cart-count" aria-live="polite" hidden></span>
+      </button>
+    </nav>
+
+  </header>
+
+  <div class="compact-navigation" id="compact-navigation" aria-label="Navegación al desplazarse">
+    <a class="compact-wordmark" href="index.html" aria-label="Selyra, inicio"><img src="assets/selyra-wordmark.svg?v=2" alt="Selyra" width="125" height="36"></a>
+    <nav class="compact-nav" aria-label="Navegación rápida">
+      <a href="index.html#obras">Originales</a>
+      <a href="index.html#prints">Prints</a>
+      <a href="index.html#universo">Sobre mí</a>
+      <a href="contacto.html">Contactar</a>
+    </nav>
+    <button class="compact-cart" type="button" id="compact-cart-open" aria-label="Abrir carrito de compra" aria-controls="cart-panel" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L20 8H6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.2" fill="currentColor"/><circle cx="17" cy="19" r="1.2" fill="currentColor"/></svg>
+      <span class="cart-count" id="compact-cart-count" aria-live="polite" hidden></span>
+    </button>
+  </div>
+
+  <main class="originals-page-main">
+ <div class="originals-page-top"><a class="contact-back-link" href="index.html#obras">← Volver a Selyra</a></div>
+    <section class="works section-pad" id="obras">
+      <div class="works-heading">
+        <div><h2>ORIGINALES</h2></div>
+      </div>
+      <div class="work-grid">
+        <article class="work-card">
+          <div class="work-image work-image-one"><div class="placeholder-face face-a"></div><span class="work-number">S / 001</span><span class="work-tag">ACRÍLICO</span></div>
+          <div class="work-meta"><div><h3>Mirada interior</h3><p>Retrato · Serie inicial</p></div><span class="work-arrow">↗</span></div>
+          <button class="add-to-cart" type="button" data-product-id="original-001" data-product-name="Mirada interior — original">Añadir al carrito</button>
+        </article>
+        <article class="work-card work-card-offset">
+          <div class="work-image work-image-two"><div class="placeholder-face face-b"></div><span class="work-number">S / 002</span><span class="work-tag">TEXTURA</span></div>
+          <div class="work-meta"><div><h3>Materia viva</h3><p>Acrílico y relieve · En desarrollo</p></div><span class="work-arrow">↗</span></div>
+          <button class="add-to-cart" type="button" data-product-id="original-002" data-product-name="Materia viva — original">Añadir al carrito</button>
+        </article>
+        <article class="work-card">
+          <div class="work-image work-image-three"><div class="placeholder-face face-c"></div><span class="work-number">S / 003</span><span class="work-tag">COLOR</span></div>
+          <div class="work-meta"><div><h3>Otra forma de ser</h3><p>Retrato · Serie inicial</p></div><span class="work-arrow">↗</span></div>
+          <button class="add-to-cart" type="button" data-product-id="original-003" data-product-name="Otra forma de ser — original">Añadir al carrito</button>
+        </article>
+        <article class="work-card">
+          <div class="work-image work-image-four"><div class="placeholder-face face-d"></div><span class="work-number">S / 004</span><span class="work-tag">LUZ</span></div>
+          <div class="work-meta"><div><h3>Luz adentro</h3><p>Retrato · Luz y sombra</p></div><span class="work-arrow">↗</span></div>
+          <button class="add-to-cart" type="button" data-product-id="original-004" data-product-name="Luz adentro — original">Añadir al carrito</button>
+        </article>
+        <article class="work-card">
+          <div class="work-image work-image-five"><div class="placeholder-face face-e"></div><span class="work-number">S / 005</span><span class="work-tag">RELIEVE</span></div>
+          <div class="work-meta"><div><h3>Raíces de color</h3><p>Acrílico y textura · Serie inicial</p></div><span class="work-arrow">↗</span></div>
+          <button class="add-to-cart" type="button" data-product-id="original-005" data-product-name="Raíces de color — original">Añadir al carrito</button>
+        </article>
+        <article class="work-card">
+          <div class="work-image work-image-six"><div class="placeholder-face face-f"></div><span class="work-number">S / 006</span><span class="work-tag">COLOR</span></div>
+          <div class="work-meta"><div><h3>Instante libre</h3><p>Retrato · Expresión y color</p></div><span class="work-arrow">↗</span></div>
+          <button class="add-to-cart" type="button" data-product-id="original-006" data-product-name="Instante libre — original">Añadir al carrito</button>
+        </article>
+      </div>
+      <p class="placeholder-note">Las imágenes de esta primera maqueta son composiciones provisionales. Se sustituirán por fotografías de tus obras reales antes de publicar.</p>
+    </section>
+
+
+</main>
+
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+  <aside class="cart-panel" id="cart-panel" aria-labelledby="cart-title" aria-hidden="true" hidden>
+    <div class="cart-panel-heading">
+      <div><p class="section-kicker">SELYRA</p><h2 id="cart-title">Tu carrito <span id="cart-heading-count">(0)</span></h2></div>
+      <button type="button" class="cart-close" id="cart-close" aria-label="Cerrar carrito">×</button>
+    </div>
+    <p class="cart-intro">Guarda aquí las obras que te interesan.</p>
+    <div id="cart-items" class="cart-items"><p class="cart-empty">Tu carrito está vacío.</p></div>
+    <div class="cart-panel-bottom">
+      <p class="cart-total-label">Total</p>
+      <p class="cart-total" id="cart-total">Se confirmará el precio</p>
+      <p class="cart-note">Los precios y los pagos online aún están por configurar. Puedes enviarme tu selección para consultar disponibilidad y precio final.</p>
+      <button type="button" class="cart-checkout" id="cart-checkout" disabled>Consultar selección</button>
+      <button type="button" class="cart-clear" id="cart-clear">Vaciar carrito</button>
+    </div>
+  </aside>
+  <footer class="social-footer" aria-label="Redes sociales de Selyra">
+    <a class="social-icon" href="https://www.instagram.com/artselyra/" aria-label="Instagram de Selyra @artselyra" title="Instagram" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.8" r="1.1" fill="currentColor"/></svg>
+    </a>
+    <span class="social-icon" aria-label="TikTok — enlace pendiente" title="TikTok">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.1a4.2 4.2 0 1 1-3.5-4.14V13a1.8 1.8 0 1 0 1.1 1.66V3h2.4c.35 2.2 1.65 3.7 4 4.1v2.5A8.1 8.1 0 0 1 14 7.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </footer>
+  <script src="translations.js?v=20261026-3"></script>
+  <script src="script.js?v=20261026-5"></script>
+</body>
+</html>
