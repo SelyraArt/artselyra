@@ -725,3 +725,6 @@ body.cart-open{overflow:hidden}
 .hero-showreel-caption{bottom:62px}
 @media(max-width:800px){.hero-video::before{width:90%;aspect-ratio:4/3;margin:26px auto 34px}.hero-youtube,.hero-video-overlay{top:26px;width:90%;aspect-ratio:4/3}.hero-showreel-caption{bottom:52px}}
 @media(max-width:480px){.hero-video::before{width:92%;margin:26px auto 34px}.hero-youtube,.hero-video-overlay{width:92%}.hero-showreel-caption{bottom:49px;font-size:9px}}
+
+/* Acento naranja terracota suave en el título de Contacto. */
+.contact-page-heading .contact-art-accent{color:#bd805c!important;font-style:italic}
