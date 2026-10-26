@@ -659,3 +659,14 @@ body.cart-open{overflow:hidden}
 @media(max-width:480px){
 .site-header .cart-trigger{position:relative;left:auto;right:auto;top:auto;transform:none;margin-left:8px;order:5}
 }
+
+/* El carrito acompaña al último enlace del menú; sin contador cuando está vacío. */
+.site-header .cart-trigger{position:relative;top:auto;left:auto;right:auto;transform:none;margin-left:clamp(18px,2.4vw,38px);margin-right:0;flex-shrink:0}
+.site-header .nav{margin-left:auto}
+.site-header .cart-trigger .cart-count[hidden],.compact-cart .cart-count[hidden]{display:none!important}
+@media(max-width:800px){
+.site-header .cart-trigger{position:relative;top:auto;left:auto;right:auto;transform:none;margin-left:clamp(10px,2vw,20px);margin-right:0}
+}
+@media(max-width:480px){
+.site-header .cart-trigger{position:relative;top:auto;left:auto;right:auto;transform:none;margin-left:10px}
+}
