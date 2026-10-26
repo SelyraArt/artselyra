@@ -790,3 +790,16 @@ body.cart-open{overflow:hidden}
  .prints-carousel.is-expanded .prints-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  .prints .print-image,.works .work-image{aspect-ratio:4/5;height:auto;min-height:0}
 }
+
+/* Catálogo de originales en página independiente. */
+.originals-page-main{padding-top:34px}
+.originals-page-top{padding:0 clamp(20px,6vw,100px) 8px}
+.originals-page .works{padding-top:22px}
+.gallery-more-wrap a.gallery-more{text-decoration:none;display:inline-flex;align-items:center;gap:9px;justify-content:center}
+@media(max-width:800px){
+  /* Dos tarjetas completas en cada paso del carrusel, sin repetir la anterior. */
+  .prints-carousel{container-type:inline-size}
+  .prints .prints-grid{gap:12px!important}
+  .prints .print-card{flex:0 0 calc((100cqw - 12px)/2)!important;width:calc((100cqw - 12px)/2)!important;box-sizing:border-box}
+  .prints-carousel.is-expanded .print-card{width:auto!important;flex:auto!important}
+}
