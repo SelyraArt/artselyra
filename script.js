@@ -324,18 +324,25 @@ function selyraGalleryLabel(key) {
 // Carrusel de prints: flecha para recorrer, Ver más al llegar al final.
 const printsCarousel = document.getElementById('prints-carousel');
 const printsNext = document.getElementById('prints-next');
+const printsPrev = document.getElementById('prints-prev');
 const printsMore = document.getElementById('prints-more');
 if (printsCarousel && printsNext && printsMore) {
   const updatePrintsEnd = () => {
     if (printsCarousel.classList.contains('is-expanded')) return;
     const atEnd = printsCarousel.scrollLeft + printsCarousel.clientWidth >= printsCarousel.scrollWidth - 8;
     printsNext.hidden = atEnd;
+    if (printsPrev) printsPrev.hidden = printsCarousel.scrollLeft <= 8;
     printsMore.hidden = !atEnd;
   };
   printsNext.addEventListener('click', () => {
     const card = printsCarousel.querySelector('.print-card');
     const gap = parseFloat(getComputedStyle(printsCarousel.querySelector('.prints-grid')).gap) || 0;
     printsCarousel.scrollBy({left: (card.getBoundingClientRect().width + gap) * (window.matchMedia('(max-width:800px)').matches ? 2 : 1), behavior:'smooth'});
+  });
+  if (printsPrev) printsPrev.addEventListener('click', () => {
+    const card = printsCarousel.querySelector('.print-card');
+    const gap = parseFloat(getComputedStyle(printsCarousel.querySelector('.prints-grid')).gap) || 0;
+    printsCarousel.scrollBy({left: -(card.getBoundingClientRect().width + gap) * (window.matchMedia('(max-width:800px)').matches ? 2 : 1), behavior:'smooth'});
   });
   printsCarousel.addEventListener('scroll', updatePrintsEnd, {passive:true});
   window.addEventListener('resize', updatePrintsEnd);
@@ -346,6 +353,7 @@ if (printsCarousel && printsNext && printsMore) {
     printsMore.querySelector('span').textContent = expanded ? '↑' : '↓';
     printsMore.hidden = false;
     printsNext.hidden = expanded;
+    if (printsPrev) printsPrev.hidden = expanded;
     if (!expanded) { printsCarousel.scrollLeft = 0; updatePrintsEnd(); }
   });
   updatePrintsEnd();
