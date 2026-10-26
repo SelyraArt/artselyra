@@ -58,6 +58,7 @@ if (languageSelect) {
   languageSelect.addEventListener('change', () => {
     localStorage.setItem('selyra-language', languageSelect.value);
     updateLanguagePicker();
+    applySelyraLanguage();
   });
 }
 if (languagePickerButton && languagePickerMenu) {
@@ -90,9 +91,57 @@ if (currencySelect) {
   }
   currencySelect.addEventListener('change', () => {
     localStorage.setItem('selyra-currency', currencySelect.value);
+    refreshCurrencyDisplay();
   });
 }
 
+
+
+// Traducción inmediata de la interfaz, sin servicios externos ni textos inventados.
+const originalTexts = new WeakMap();
+function selyraTranslate(text) {
+  const lang = localStorage.getItem('selyra-language') || 'es';
+  const dictionary = (window.SELYRA_TRANSLATIONS || {})[lang] || {};
+  return dictionary[text] || text;
+}
+function applySelyraLanguage() {
+  const lang = localStorage.getItem('selyra-language') || 'es';
+  document.documentElement.lang = lang;
+  const dictionary = (window.SELYRA_TRANSLATIONS || {})[lang] || {};
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.parentElement || node.parentElement.closest('script,style,svg,.language-picker,#language-picker-menu,#language-current-name,#language-current-flag')) return NodeFilter.FILTER_REJECT;
+      return node.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  let node;
+  while ((node = walker.nextNode())) {
+    if (!originalTexts.has(node)) originalTexts.set(node, node.textContent);
+    const original = originalTexts.get(node);
+    const clean = original.trim();
+    const replacement = dictionary[clean] || clean;
+    node.textContent = original.replace(clean, replacement);
+  }
+  document.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(input => {
+    if (!input.dataset.originalPlaceholder) input.dataset.originalPlaceholder = input.placeholder;
+    input.placeholder = dictionary[input.dataset.originalPlaceholder] || input.dataset.originalPlaceholder;
+  });
+  document.querySelectorAll('[data-original-label]').forEach(el => {
+    el.setAttribute('aria-label', dictionary[el.dataset.originalLabel] || el.dataset.originalLabel);
+  });
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.textContent = dictionary['Añadir al carrito'] || 'Añadir al carrito';
+  });
+}
+function refreshCurrencyDisplay() {
+  // No hay precios publicados: no calcular conversiones sin un precio base ni una tasa verificable.
+  const currency = (currencySelect && currencySelect.value) || localStorage.getItem('selyra-currency') || 'EUR';
+  document.documentElement.dataset.currency = currency;
+  document.querySelectorAll('[data-price-eur]').forEach(element => {
+    // Los precios futuros deben publicarse con su importe en EUR y una fuente de cambio fiable.
+    element.textContent = 'Precio por confirmar';
+  });
+}
 
 // Formulario de contacto: prepara un correo en la aplicación de correo de la persona.
 const contactForm = document.getElementById('contact-form');
@@ -234,3 +283,6 @@ if (cartCheckout) cartCheckout.addEventListener('click', () => {
   window.location.href = 'mailto:contact@artselyra.com?subject=' + subject + '&body=' + body;
 });
 renderSelyraCart();
+
+applySelyraLanguage();
+refreshCurrencyDisplay();
