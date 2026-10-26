@@ -670,3 +670,25 @@ body.cart-open{overflow:hidden}
 @media(max-width:480px){
 .site-header .cart-trigger{position:relative;top:auto;left:auto;right:auto;transform:none;margin-left:10px}
 }
+
+/* Mantener los enlaces del encabezado en su lugar original. Solo se desplaza el carrito. */
+.site-header .nav{margin-left:initial}
+.site-header .cart-trigger{margin-left:clamp(22px,3vw,42px)}
+/* Logo discreto a la izquierda de la barra de retorno, sin desplazar los enlaces centrales. */
+.compact-navigation{position:fixed}
+.compact-wordmark{position:absolute;left:clamp(16px,3vw,52px);top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center}
+.compact-wordmark img{display:block;width:clamp(90px,10vw,125px);height:auto;max-height:42px;object-fit:contain}
+@media(max-width:800px){
+.compact-navigation{padding-left:clamp(100px,17vw,150px)}
+.compact-wordmark{left:12px}
+.compact-wordmark img{width:clamp(75px,12vw,105px)}
+}
+@media(max-width:540px){
+.compact-navigation{padding:0 8px 0 74px;gap:6px;justify-content:flex-end}
+.compact-wordmark{left:5px}
+.compact-wordmark img{width:68px}
+.compact-nav{gap:clamp(6px,1.7vw,12px)}
+.compact-nav a{font-size:clamp(9px,2.5vw,11px)}
+.compact-cart{margin-left:2px;flex-basis:26px;width:26px}
+.compact-cart svg{width:18px;height:18px}
+}
