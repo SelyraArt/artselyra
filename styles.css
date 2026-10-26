@@ -618,3 +618,30 @@ body.cart-open{overflow:hidden}
 .site-header .cart-count{position:absolute;top:0;right:-3px;min-width:15px;height:15px;padding:0 3px;font-size:9px;line-height:1}
 @media(max-width:800px){.site-header .cart-trigger{position:absolute;top:50%;left:auto;right:5%;transform:translateY(-50%);margin:0;padding:6px;z-index:3}.site-header .cart-trigger svg{width:20px;height:20px}}
 @media(max-width:480px){.site-header .cart-trigger{right:3%;top:50%;left:auto;padding:5px}.site-header .cart-trigger svg{width:19px;height:19px}}
+
+/* Barra secundaria que aparece solo al subir: sin logo ni preferencias */
+.compact-navigation{position:fixed;z-index:110;top:0;left:0;right:0;min-height:62px;padding:0 clamp(22px,5vw,80px);display:flex;align-items:center;justify-content:center;gap:clamp(34px,4vw,70px);background:#f8f7f3;border-bottom:1px solid var(--line);box-shadow:0 6px 22px rgba(36,34,31,.055);transform:translateY(-110%);visibility:hidden;pointer-events:none;transition:transform .26s ease,visibility .26s}
+.compact-navigation.is-visible{transform:translateY(0);visibility:visible;pointer-events:auto}
+.compact-nav{display:flex;align-items:center;justify-content:center;gap:clamp(26px,3.5vw,52px)}
+.compact-nav a{font:500 14px "DM Sans",sans-serif;letter-spacing:.025em;white-space:nowrap;transition:opacity .2s}
+.compact-nav a:hover{opacity:.58}
+.compact-cart{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;flex:0 0 40px;margin-left:14px;padding:6px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.compact-cart svg{width:23px;height:23px}
+.compact-cart .cart-count{position:absolute;right:0;top:0;min-width:16px;height:16px;display:grid;place-items:center;border-radius:50%;background:#222;color:white;font:500 9px "DM Sans",sans-serif}
+.site-header .nav a{font-size:14px}
+.site-header .nav{gap:clamp(20px,2.8vw,40px)}
+.site-header .cart-trigger{margin-left:20px}
+@media(max-width:800px){
+.compact-navigation{min-height:56px;padding:0 14px;gap:14px;justify-content:center}
+.compact-nav{gap:clamp(12px,2.8vw,22px)}
+.compact-nav a{font-size:12px}
+.compact-cart{width:32px;height:36px;flex-basis:32px;margin-left:6px}
+.compact-cart svg{width:20px;height:20px}
+}
+@media(max-width:420px){
+.compact-navigation{gap:7px;padding:0 9px}
+.compact-nav{gap:11px}
+.compact-nav a{font-size:11px;letter-spacing:0}
+.compact-cart{margin-left:2px;width:28px;flex-basis:28px}
+}
+@media(prefers-reduced-motion:reduce){.compact-navigation{transition:none}}
