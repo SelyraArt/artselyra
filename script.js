@@ -335,7 +335,7 @@ if (printsCarousel && printsNext && printsMore) {
   printsNext.addEventListener('click', () => {
     const card = printsCarousel.querySelector('.print-card');
     const gap = parseFloat(getComputedStyle(printsCarousel.querySelector('.prints-grid')).gap) || 0;
-    printsCarousel.scrollBy({left: card.getBoundingClientRect().width + gap, behavior:'smooth'});
+    printsCarousel.scrollBy({left: (card.getBoundingClientRect().width + gap) * (window.matchMedia('(max-width:800px)').matches ? 2 : 1), behavior:'smooth'});
   });
   printsCarousel.addEventListener('scroll', updatePrintsEnd, {passive:true});
   window.addEventListener('resize', updatePrintsEnd);
