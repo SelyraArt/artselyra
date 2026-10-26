@@ -26,3 +26,16 @@ Object.assign(window.SELYRA_TRANSLATIONS.da,{"Ver más":"Se mere","Ver menos":"S
 Object.assign(window.SELYRA_TRANSLATIONS.no,{"Ver más":"Se mer","Ver menos":"Se mindre"});
 Object.assign(window.SELYRA_TRANSLATIONS.ja,{"Ver más":"もっと見る","Ver menos":"閉じる"});
 Object.assign(window.SELYRA_TRANSLATIONS.zh,{"Ver más":"查看更多","Ver menos":"收起"});
+
+// Título de la galería de originales (en mayúsculas).
+Object.assign(window.SELYRA_TRANSLATIONS.en,{"ORIGINALES":"ORIGINALS"});
+Object.assign(window.SELYRA_TRANSLATIONS.fr,{"ORIGINALES":"ORIGINAUX"});
+Object.assign(window.SELYRA_TRANSLATIONS.de,{"ORIGINALES":"ORIGINALE"});
+Object.assign(window.SELYRA_TRANSLATIONS.it,{"ORIGINALES":"ORIGINALI"});
+Object.assign(window.SELYRA_TRANSLATIONS.pt,{"ORIGINALES":"ORIGINAIS"});
+Object.assign(window.SELYRA_TRANSLATIONS.nl,{"ORIGINALES":"ORIGINELEN"});
+Object.assign(window.SELYRA_TRANSLATIONS.sv,{"ORIGINALES":"ORIGINALVERK"});
+Object.assign(window.SELYRA_TRANSLATIONS.da,{"ORIGINALES":"ORIGINALVÆRKER"});
+Object.assign(window.SELYRA_TRANSLATIONS.no,{"ORIGINALES":"ORIGINALVERK"});
+Object.assign(window.SELYRA_TRANSLATIONS.ja,{"ORIGINALES":"原画作品"});
+Object.assign(window.SELYRA_TRANSLATIONS.zh,{"ORIGINALES":"原创作品"});
