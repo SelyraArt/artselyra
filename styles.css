@@ -303,7 +303,7 @@ body,.site-header,.intro,.process,.prints{background:#fafaf8}
   display:flex;
   align-items:center;
   gap:15px;
-  z-index:5;
+  z-index:130;
 }
 .preference-control{display:flex;align-items:center;gap:5px;color:#555550}
 .preference-icon{font-size:15px;line-height:1}
@@ -352,15 +352,15 @@ body,.site-header,.intro,.process,.prints{background:#fafaf8}
 }
 .language-picker-menu{
   position:absolute;top:calc(100% + 9px);right:0;z-index:30;
-  min-width:155px;max-height:310px;overflow-y:auto;
+  min-width:155px;max-height:min(440px, 65vh);max-height:min(440px, 65dvh);overflow-y:auto;overscroll-behavior:contain;
   background:#fff;border:1px solid rgba(36,34,31,.14);
   box-shadow:0 10px 28px rgba(36,34,31,.12);padding:5px
 }
 .language-picker-menu[hidden]{display:none}
 .language-picker-menu button{
   width:100%;display:flex;align-items:center;gap:9px;
-  padding:9px 10px;border:0;background:transparent;text-align:left;
-  color:#333;font:400 11px "DM Sans",sans-serif;cursor:pointer;white-space:nowrap
+  min-height:44px;padding:9px 10px;border:0;background:transparent;text-align:left;
+  color:#333;font:400 13px "DM Sans",sans-serif;cursor:pointer;white-space:nowrap
 }
 .language-picker-menu button span{font-size:16px;line-height:1}
 .language-picker-menu button:hover,
@@ -808,3 +808,28 @@ body.cart-open{overflow:hidden}
 .prints-prev{display:grid;place-items:center;border:1px solid #39332d;border-radius:50%;background:transparent;color:#29231e;width:46px;height:46px;font-size:23px;cursor:pointer}
 .prints-prev:hover{background:#29231e;color:white}
 .prints-prev[hidden]{display:none!important}
+
+/* Separadores visuales entre enlaces, sin alterar sus nombres accesibles. */
+.site-header .nav, .compact-nav {
+  --nav-gap: clamp(16px, 2.8vw, 40px);
+  column-gap: var(--nav-gap);
+}
+.site-header .nav > a + a, .compact-nav > a + a {
+  position: relative;
+}
+.site-header .nav > a + a::before, .compact-nav > a + a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-start: calc(var(--nav-gap) / -2);
+  height: 0.85em;
+  border-inline-start: 1px solid var(--muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+@media (max-width: 800px) {
+  .site-header .nav, .compact-nav {
+    --nav-gap: clamp(8px, 2vw, 16px);
+    column-gap: var(--nav-gap) !important;
+  }
+}

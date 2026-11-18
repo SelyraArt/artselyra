@@ -31,12 +31,9 @@ const languageDetails = {
   de: { flag: '🇩🇪', name: 'Deutsch' },
   it: { flag: '🇮🇹', name: 'Italiano' },
   pt: { flag: '🇵🇹', name: 'Português' },
-  nl: { flag: '🇳🇱', name: 'Nederlands' },
-  sv: { flag: '🇸🇪', name: 'Svenska' },
-  da: { flag: '🇩🇰', name: 'Dansk' },
   no: { flag: '🇳🇴', name: 'Norsk' },
   ja: { flag: '🇯🇵', name: '日本語' },
-  zh: { flag: '🇨🇳', name: '中文' }
+  zh: { flag: '🇨🇳', name: '简体中文' }
 };
 function updateLanguagePicker() {
   if (!languageSelect) return;
@@ -53,6 +50,8 @@ if (languageSelect) {
   const savedLanguage = localStorage.getItem('selyra-language');
   if (savedLanguage && [...languageSelect.options].some(option => option.value === savedLanguage)) {
     languageSelect.value = savedLanguage;
+  } else if (savedLanguage) {
+    localStorage.removeItem('selyra-language');
   }
   updateLanguagePicker();
   languageSelect.addEventListener('change', () => {

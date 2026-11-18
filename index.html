@@ -9,12 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261026-20">
+  <link rel="stylesheet" href="styles.css?v=20261118-1">
 </head>
 <body>
   <header class="site-header">
     <div class="store-preferences" aria-label="Preferencias de tienda">
-      <label class="preference-control">
+      <div class="preference-control">
         <span class="sr-only">Idioma</span>
         <select id="language-select" class="sr-only" aria-label="Seleccionar idioma">
           <option value="es">Español</option>
@@ -23,12 +23,9 @@
           <option value="de">Deutsch</option>
           <option value="it">Italiano</option>
           <option value="pt">Português</option>
-          <option value="nl">Nederlands</option>
-          <option value="sv">Svenska</option>
-          <option value="da">Dansk</option>
           <option value="no">Norsk</option>
           <option value="ja">日本語</option>
-          <option value="zh">中文</option>
+          <option value="zh">简体中文</option>
         </select>
         <div class="language-picker">
           <button type="button" id="language-picker-button" class="language-picker-button" aria-label="Seleccionar idioma" aria-expanded="false" aria-haspopup="listbox">
@@ -43,15 +40,12 @@
             <button type="button" role="option" data-language="de"><span>🇩🇪</span> Deutsch</button>
             <button type="button" role="option" data-language="it"><span>🇮🇹</span> Italiano</button>
             <button type="button" role="option" data-language="pt"><span>🇵🇹</span> Português</button>
-            <button type="button" role="option" data-language="nl"><span>🇳🇱</span> Nederlands</button>
-            <button type="button" role="option" data-language="sv"><span>🇸🇪</span> Svenska</button>
-            <button type="button" role="option" data-language="da"><span>🇩🇰</span> Dansk</button>
             <button type="button" role="option" data-language="no"><span>🇳🇴</span> Norsk</button>
             <button type="button" role="option" data-language="ja"><span>🇯🇵</span> 日本語</button>
-            <button type="button" role="option" data-language="zh"><span>🇨🇳</span> 中文</button>
+            <button type="button" role="option" data-language="zh"><span>🇨🇳</span> 简体中文</button>
           </div>
         </div>
-      </label>
+      </div>
       <label class="preference-control">
         <span class="sr-only">Moneda</span>
         <select id="currency-select" aria-label="Seleccionar moneda">
@@ -237,6 +231,6 @@
     </a>
   </footer>
   <script src="translations.js?v=20261026-4"></script>
-  <script src="script.js?v=20261026-7"></script>
+  <script src="script.js?v=20261118-1"></script>
 </body>
 </html>
