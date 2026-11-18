@@ -811,7 +811,7 @@ body.cart-open{overflow:hidden}
 
 /* Separadores visuales entre enlaces, sin alterar sus nombres accesibles. */
 .site-header .nav, .compact-nav {
-  --nav-gap: clamp(16px, 2.8vw, 40px);
+  --nav-gap: clamp(20px, 3vw, 44px);
   column-gap: var(--nav-gap);
 }
 .site-header .nav > a + a, .compact-nav > a + a {
@@ -821,7 +821,7 @@ body.cart-open{overflow:hidden}
   content: "";
   position: absolute;
   top: 50%;
-  inset-inline-start: calc(var(--nav-gap) / -2);
+  inset-inline-start: calc((var(--nav-gap) + 1px) / -2);
   height: 0.85em;
   border-inline-start: 1px solid var(--muted);
   transform: translateY(-50%);
@@ -829,7 +829,7 @@ body.cart-open{overflow:hidden}
 }
 @media (max-width: 800px) {
   .site-header .nav, .compact-nav {
-    --nav-gap: clamp(8px, 2vw, 16px);
+    --nav-gap: clamp(12px, 3.6vw, 22px);
     column-gap: var(--nav-gap) !important;
   }
 }

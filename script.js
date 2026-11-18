@@ -29,9 +29,6 @@ const languageDetails = {
   en: { flag: '🇬🇧', name: 'English' },
   fr: { flag: '🇫🇷', name: 'Français' },
   de: { flag: '🇩🇪', name: 'Deutsch' },
-  it: { flag: '🇮🇹', name: 'Italiano' },
-  pt: { flag: '🇵🇹', name: 'Português' },
-  no: { flag: '🇳🇴', name: 'Norsk' },
   ja: { flag: '🇯🇵', name: '日本語' },
   zh: { flag: '🇨🇳', name: '简体中文' }
 };
